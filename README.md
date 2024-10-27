@@ -1,1 +1,1 @@
-To sign just make a pull request with your Minecraft username.
+To sign this just [make an issue](https://github.com/lincolnsmp/treaty/issues/new) with your Minecraft username.
