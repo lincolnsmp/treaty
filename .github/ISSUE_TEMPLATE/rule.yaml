@@ -1,0 +1,47 @@
+name: Rule suggestion
+description: Request a rule to be added or changed.
+title: "[Rule]: "
+labels: ["rule"]
+assignees:
+  - httphypixelnet
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your input!
+  - type: input
+    id: "username"
+    attributes:
+      label: Minecraft Username
+      description: What's your Minecraft username?
+      placeholder: ex. void_linxu
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Rule Suggestion
+      description: What rule do you want to suggest?
+      placeholder: ex. Ban Dima for being bad at the game
+      value: "I want X rule to be added/changed because Y"
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Suggestion type
+      description: Are you suggesting a new rule or a change to an existing rule?
+      options:
+        - New rule
+        - Change to existing rule
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Please check the following before submitting
+      options:
+        - label: I have checked the current rules and current open issues for a duplicate suggestion
+          required: true
+        - label: I have provided ample reasoning for my suggestion
+          required: true
