@@ -36,7 +36,7 @@ jobs:
               const playerUUID = data.data.player.id;
               
               // Read existing SIGNERS.json
-              let signers = [];
+              let signers = {people: []};
               try {
                 const signersContent = fs.readFileSync('SIGNERS.json', 'utf8');
                 signers = JSON.parse(signersContent);
@@ -45,7 +45,7 @@ jobs:
               }
               
             // Add new UUID if it doesn't exist
-            signers.push(playerUUID);
+            signers.people.push({ name: username, uuid: playerUUID });
             
             // Write back to file
             fs.writeFileSync('SIGNERS.json', JSON.stringify(signers, null, 2));
