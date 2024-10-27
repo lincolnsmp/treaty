@@ -15,15 +15,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - uses: stefanbuck/github-issue-praser@v3
+        id: issue-parser
+        with:
+          template-path: .github/ISSUE_TEMPLATE/sign.yaml
+
+      - run: echo '${{ steps.issue-parser.outputs.jsonString }}' > s.json
       - name: Add UUID to SIGNERS.json
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
-            // Get username from issue title or body
-            const issue = context.payload.issue;
-            const username = issue.body.username; // Or parse from issue body as needed
-            
+            const username = require('./s.json').username;
+            console.log(`Adding UUID for ${username}`);
             try {
               // Fetch Minecraft UUID
               const response = await fetch(`https://playerdb.co/api/player/minecraft/${username}`);
@@ -34,7 +38,7 @@ jobs:
               }
               
               const playerUUID = data.data.player.id;
-              
+              console.log(`UUID for ${username} is ${playerUUID}`);
               // Read existing SIGNERS.json
               let signers = {people: []};
               try {
