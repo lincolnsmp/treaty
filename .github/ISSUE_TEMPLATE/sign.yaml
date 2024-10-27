@@ -1,0 +1,30 @@
+name: Sign treaty
+description: Sign the treaty agreement.
+title: "[Signature]: "
+labels: ["signature"]
+assignees:
+  - httphypixelnet
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for signing!
+  - type: input
+    id: "username"
+    attributes:
+      label: Minecraft Username
+      description: What's your Minecraft username?
+      placeholder: ex. void_linxu
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: By submitting this forum you agree to the following terms
+      options:
+        - label: I have read, understood, and agreed the treaty agreement
+          required: true
+        - label: I am responsible for my own actions regarding this treaty
+          required: true
+        - label: I understand that I may be prosecuted in court if I break the treaty
+          required: true
