@@ -37,7 +37,7 @@ jobs:
                 throw new Error('Failed to fetch player data');
               }
               
-              const playerUUID = data.data.player.id;
+              const playerUUID = data.data.player.id.replaceAll('-', '');
               console.log(`UUID for ${username} is ${playerUUID}`);
               // Read existing SIGNERS.json
               let signers = {people: []};
@@ -56,7 +56,7 @@ jobs:
             
             // Commit and push changes
             await exec.exec('git', ['config', '--global', 'user.email', 'github-actions[bot]@users.noreply.github.com']);
-            await exec.exec('git', ['config', '--global', 'user.name', 'github-actions[bot]']);
+            await exec.exec('git', ['config', '--global', 'user.name', username]);
             await exec.exec('git', ['add', 'SIGNERS.json']);
             await exec.exec('git', ['commit', '-m', `Add UUID for ${username}`]);
             await exec.exec('git', ['push']);
